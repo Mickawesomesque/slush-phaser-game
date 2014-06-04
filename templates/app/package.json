@@ -1,0 +1,24 @@
+{
+  "name": "<%= nameSlug %>",
+  "version": "0.0.1",
+  "private": true,
+
+  "devDependencies": {
+    "bower": "latest",
+    "browserify": "latest",
+    "gulp": "latest",
+    "gulp-clean": "latest",
+    "gulp-connect": "latest",
+    "gulp-jade": "latest",
+    "gulp-jshint": "latest",
+    "gulp-rename": "latest",
+    "gulp-uglify": "latest",
+    "jshint-stylish": "latest",
+    "vinyl-source-stream": "latest"
+  },
+
+  "scripts": {
+    "dev": "ENV=dev gulp default",
+    "distribute": "gulp build-all && gulp uglify"
+  }
+}

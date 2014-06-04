@@ -1,0 +1,14 @@
+{
+  "name": "slush-phaser-game",
+  "version": "0.0.8",
+  "private": true,
+  "dependencies": {
+    "gulp": "^3.7.0",
+    "gulp-conflict": "^0.1.2",
+    "gulp-install": "^0.1.5",
+    "gulp-rename": "^1.2.0",
+    "gulp-template": "^0.1.1",
+    "inquirer": "^0.5.1",
+    "underscore.string": "^2.3.3"
+  }
+}
