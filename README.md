@@ -52,6 +52,10 @@ npm run dev
 Once the server is running, each modification will automatically update the page
 opened in the browser.
 
+A new folder (```dist```) should appear at the root of your project, containing
+the generated files (HTML, CSS and JS) for your game. That's the content of this
+folder you'll use when publishing your game.
+
 ## Project structure
 
 ```
