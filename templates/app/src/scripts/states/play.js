@@ -1,8 +1,10 @@
 'use strict';
 
 var Play = module.exports = function () {
-  //
+  Phaser.State.call(this);
 };
+Play.prototype = Object.create(Phaser.State.prototype);
+Play.prototype.constructor = Play;
 
 Play.prototype.create = function () {
   //

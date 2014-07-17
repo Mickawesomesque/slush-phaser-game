@@ -1,15 +1,15 @@
-var gulp = require('gulp'),
-    browserify = require('browserify'),
+var browserify = require('browserify'),
     connect = require('gulp-connect'),
+    gulp = require('gulp'),
     jade = require('gulp-jade'),
     linter = require('gulp-jshint'),
     rename = require('gulp-rename'),
+    sass = require('gulp-sass'),
     source = require('vinyl-source-stream'),
     uglify = require('gulp-uglify');
-
 var cfg = require('../../config');
 
-var DEBUG = !!process.env.ENV && process.env.ENV === 'dev';
+var DEBUG = process.env.NODE_ENV === 'dev';
 
 gulp.task('build-all', [
   'build-markup', 'build-scripts', 'build-stylesheets', 'build-vendors',
@@ -29,27 +29,23 @@ gulp.task('build-markup', ['clean-markup'], function () {
 });
 
 gulp.task('build-scripts', ['lint', 'clean-scripts'], function () {
-  browserify('./src/scripts/main.js').bundle({debug: DEBUG})
+  browserify('./src/scripts/main.js')
+    .bundle({debug: DEBUG})
     .pipe(source('game.js'))
     .pipe(gulp.dest('./dist/js/'))
     .pipe(connect.reload());
 });
 
 gulp.task('build-stylesheets', ['clean-stylesheets'], function () {
-  gulp.src('./src/stylesheets/*.css')
+  gulp.src('./src/stylesheets/*.scss')
+    .pipe(sass())
     .pipe(gulp.dest('./dist/css/'))
     .pipe(connect.reload());
 });
 
 gulp.task('build-vendors', ['clean-vendors'], function () {
-  [
-    './bower_components/phaser-official/build/phaser.min.js',
-    './bower_components/phaser-official/build/phaser.js',
-    './bower_components/phaser-official/build/phaser.map'
-  ].forEach(function (file) {
-    gulp.src(file)
-      .pipe(gulp.dest('./dist/js/'));
-  })
+  gulp.src('./bower_components/phaser-official/build/phaser*')
+    .pipe(gulp.dest('./dist/js/'));
 });
 
 gulp.task('lint', function () {

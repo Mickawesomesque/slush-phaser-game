@@ -5,8 +5,9 @@ html(lang='en')
     title= name
     link(rel='stylesheet', href='css/style.css')
   body
-    script(src='js/phaser.min.js')
+    div(id='content')
 
+    script(src='js/phaser.min.js')
     unless debug
       script(src='js/game.min.js')
     else

@@ -1,5 +1,5 @@
-var gulp = require('gulp')
-    clean = require('gulp-clean');
+var clean = require('gulp-rimraf'),
+    gulp = require('gulp');
 
 gulp.task('clean-all', [
   'clean-markup', 'clean-scripts', 'clean-stylesheets', 'clean-vendors'
@@ -21,8 +21,6 @@ gulp.task('clean-stylesheets', function () {
 });
 
 gulp.task('clean-vendors', function () {
-  ['phaser.min.js', 'phaser.js', 'phaser.map'].forEach(function (file) {
-    gulp.src(file, {read: false})
-      .pipe(clean());
-  });
+  gulp.src('dist/js/phaser*', {read: false})
+    .pipe(clean());
 });

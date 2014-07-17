@@ -39,14 +39,14 @@ gulp.task('default', function (done) {
       .pipe(template(answers))
       .pipe(rename(function (file) {
         if (_.startsWith(file.basename, '_')) {
-          file.basename = _.join('', '.', file.basename.slice(1))
+          file.basename = _.join('', '.', file.basename.slice(1));
         }
       }))
       .pipe(conflict(answers.nameSlug))
       .pipe(gulp.dest(answers.nameSlug))
       .pipe(install())
       .on('finish', function () {
-        done()
+        done();
       });
   });
 });

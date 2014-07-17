@@ -7,18 +7,19 @@
     "bower": "latest",
     "browserify": "latest",
     "gulp": "latest",
-    "gulp-clean": "latest",
     "gulp-connect": "latest",
     "gulp-jade": "latest",
     "gulp-jshint": "latest",
     "gulp-rename": "latest",
+    "gulp-rimraf": "latest",
+    "gulp-sass": "latest",
     "gulp-uglify": "latest",
     "jshint-stylish": "latest",
     "vinyl-source-stream": "latest"
   },
 
   "scripts": {
-    "dev": "ENV=dev gulp default",
+    "dev": "NODE_ENV=dev gulp default",
     "distribute": "gulp build-all && gulp uglify"
   }
 }
