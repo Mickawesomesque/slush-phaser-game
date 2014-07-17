@@ -1,6 +1,6 @@
 {
   "name": "slush-phaser-game",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A slush generator for easily starting to make HTML5 games with Phaser.",
   "license": "MIT",
   "author": "Mickaël Mendel <mickael@delmen.fr>",
@@ -27,12 +27,12 @@
   },
 
   "dependencies": {
-    "gulp": "^3.7.0",
-    "gulp-conflict": "^0.1.2",
-    "gulp-install": "^0.1.5",
-    "gulp-rename": "^1.2.0",
-    "gulp-template": "^0.1.1",
-    "inquirer": "^0.5.1",
-    "underscore.string": "^2.3.3"
+    "gulp": "latest",
+    "gulp-conflict": "latest",
+    "gulp-install": "latest",
+    "gulp-rename": "latest",
+    "gulp-template": "latest",
+    "inquirer": "latest",
+    "underscore.string": "latest"
   }
 }
