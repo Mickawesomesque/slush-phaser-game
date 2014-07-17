@@ -1,10 +1,10 @@
-var gulp = require('gulp'),
-    _ = require('underscore.string'),
-    conflict = require('gulp-conflict'),
-    install = require('gulp-install'),
-    inquirer = require('inquirer'),
-    rename = require('gulp-rename'),
-    template = require('gulp-template');
+var _ = require('underscore.string');
+var conflict = require('gulp-conflict');
+var gulp = require('gulp');
+var install = require('gulp-install');
+var inquirer = require('inquirer');
+var rename = require('gulp-rename');
+var template = require('gulp-template');
 
 gulp.task('default', function (done) {
   inquirer.prompt([

@@ -1,9 +1,27 @@
-var clean = require('gulp-rimraf'),
-    gulp = require('gulp');
+var clean = require('gulp-rimraf');
+var gulp = require('gulp');
 
 gulp.task('clean-all', [
-  'clean-markup', 'clean-scripts', 'clean-stylesheets', 'clean-vendors'
+  'clean-assets', 'clean-markup', 'clean-scripts', 'clean-stylesheets',
+  'clean-uglified', 'clean-vendors'
 ]);
+
+gulp.task('clean-assets', ['clean-audio', 'clean-fonts', 'clean-images']);
+
+gulp.task('clean-audio', function () {
+  gulp.src('./dist/assets/audio/*', {read: false})
+    .pipe(clean());
+});
+
+gulp.task('clean-fonts', function () {
+  gulp.src('./dist/assets/fonts/*', {read: false})
+    .pipe(clean());
+});
+
+gulp.task('clean-images', function () {
+  gulp.src(['./dist/assets/*.jpg', './dist/assets/*.png'], {read: false})
+    .pipe(clean());
+});
 
 gulp.task('clean-markup', function () {
   gulp.src('./dist/*.html', {read: false})
@@ -17,6 +35,11 @@ gulp.task('clean-scripts', function () {
 
 gulp.task('clean-stylesheets', function () {
   gulp.src('./dist/css/*.css', {read: false})
+    .pipe(clean());
+});
+
+gulp.task('clean-uglified', function () {
+  gulp.src('dist/js/game.min.js', {read: false})
     .pipe(clean());
 });
 
