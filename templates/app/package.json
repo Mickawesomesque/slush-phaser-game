@@ -5,9 +5,9 @@
 
   "devDependencies": {
     "bower": "latest",
+    "browser-sync": "latest",
     "browserify": "latest",
     "gulp": "latest",
-    "gulp-connect": "latest",
     "gulp-jade": "latest",
     "gulp-jshint": "latest",
     "gulp-rename": "latest",

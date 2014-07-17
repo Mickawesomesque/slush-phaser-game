@@ -1,5 +1,5 @@
-var browserify = require('browserify'),
-    connect = require('gulp-connect'),
+var browserSync = require('browser-sync'),
+    browserify = require('browserify'),
     gulp = require('gulp'),
     jade = require('gulp-jade'),
     linter = require('gulp-jshint'),
@@ -25,7 +25,7 @@ gulp.task('build-markup', ['clean-markup'], function () {
       }
     }))
     .pipe(gulp.dest('./dist/'))
-    .pipe(connect.reload());
+    .pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('build-scripts', ['lint', 'clean-scripts'], function () {
@@ -33,14 +33,14 @@ gulp.task('build-scripts', ['lint', 'clean-scripts'], function () {
     .bundle({debug: DEBUG})
     .pipe(source('game.js'))
     .pipe(gulp.dest('./dist/js/'))
-    .pipe(connect.reload());
+    .pipe(browserSync.reload({stream: true, once: true}));
 });
 
 gulp.task('build-stylesheets', ['clean-stylesheets'], function () {
   gulp.src('./src/stylesheets/*.scss')
     .pipe(sass())
     .pipe(gulp.dest('./dist/css/'))
-    .pipe(connect.reload());
+    .pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('build-vendors', ['clean-vendors'], function () {

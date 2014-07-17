@@ -1,11 +1,11 @@
-var connect = require('gulp-connect'),
+var browserSync = require('browser-sync'),
     gulp = require('gulp');
 
 gulp.task('serve', function () {
-  connect.server({
-    root: './dist/',
-    host: '0.0.0.0',
-    port: 8000,
-    livereload: true
+  browserSync({
+    server: {
+      baseDir: './dist/',
+    },
+    port: 8000
   });
 });
