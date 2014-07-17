@@ -60,7 +60,7 @@ folder you'll use when publishing your game.
 ## Project structure
 
 ```
-my-angular-app/
+awesome-phaser-game/
 ├── assets                        # Assets folder: images are at the root...
 |   ├── audio                     # ... audio and music files are here...
 |   └── fonts                     # ... while fonts go there.
