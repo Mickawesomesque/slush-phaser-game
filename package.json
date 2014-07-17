@@ -8,13 +8,14 @@
     "slushgenerator",
     "phaser",
     "browserify",
+    "gulp",
     "jshint",
     "jade",
     "sass",
     "game",
     "gamedev",
     "canvas",
-    "webgl",
+    "webgl"
   ],
 
   "repository": {

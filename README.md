@@ -9,6 +9,7 @@ A [slush][slush] generator for easily starting to make HTML5 games with
 - [Browserify][browserify]
 - [Jade][jade]
 - [SASS][sass]
+- [JSHint][jshint]: keep your code clean
 - [BrowserSync][browser-sync]: a local web server to test your code
 - A project structure already established*, making it easier to get started
 
@@ -92,6 +93,7 @@ my-angular-app/
 [codevinsky]: https://twitter.com/codevinsky
 [codevinsky-tutorial]: http://www.codevinsky.com/phaser-2-0-tutorial-flappy-bird-part-1/
 [jade]: http://jade-lang.com/
+[jshint]: http://www.jshint.com/
 [gulp]: http://gulpjs.com/
 [node]: http://nodejs.org/
 [phaser]: http://phaser.io
