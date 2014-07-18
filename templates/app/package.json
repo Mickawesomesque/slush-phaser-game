@@ -16,6 +16,7 @@
     "gulp-rimraf": "latest",
     "gulp-sass": "latest",
     "gulp-uglify": "latest",
+    "gulp-util": "latest",
     "jshint-stylish": "latest",
     "vinyl-source-stream": "latest"
   },

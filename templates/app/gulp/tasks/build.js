@@ -1,6 +1,9 @@
+'use strict';
+
 var browserSync = require('browser-sync');
 var browserify = require('browserify');
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 var ignore = require('gulp-ignore');
 var imagemin = require('gulp-imagemin');
 var jade = require('gulp-jade');
@@ -55,6 +58,9 @@ gulp.task('build-markup', ['clean-markup'], function () {
 gulp.task('build-scripts', ['lint', 'clean-scripts'], function () {
   browserify('./src/scripts/main.js')
     .bundle({debug: DEBUG})
+    .on('error', function (err) {
+      gutil.log(err.message);
+    })
     .pipe(source('game.js'))
     .pipe(gulp.dest('./dist/js/'))
     .pipe(browserSync.reload({stream: true, once: true}));

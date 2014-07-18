@@ -1,3 +1,5 @@
+'use strict';
+
 var clean = require('gulp-rimraf');
 var gulp = require('gulp');
 
