@@ -56,8 +56,8 @@ gulp.task('build-markup', ['clean-markup'], function () {
 });
 
 gulp.task('build-scripts', ['lint', 'clean-scripts'], function () {
-  browserify('./src/scripts/main.js')
-    .bundle({debug: DEBUG})
+  browserify('./src/scripts/main.js', {debug: DEBUG})
+    .bundle()
     .on('error', function (err) {
       gutil.log(err.message);
     })
