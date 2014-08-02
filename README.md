@@ -80,6 +80,7 @@ awesome-phaser-game/
 |   ├── stylesheets
 |   |   └── style.scss
 |   └── index.jade
+├── .bowerrc
 ├── .gitignore
 ├── .jshintrc
 ├── bower.json
