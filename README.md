@@ -90,11 +90,8 @@ awesome-phaser-game/
 ```
 ---
 The MIT License (MIT)
-[OSI Approved License]
 
-The MIT License (MIT)
-
-Copyright (c) <year> <copyright holders>
+Copyright (c) 2014 Mickael Mendel
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -124,4 +121,4 @@ THE SOFTWARE.
 [node]: http://nodejs.org/
 [phaser]: http://phaser.io
 [sass]: http://sass-lang.com/
-[slush]: http://slushjs.github.io
+[slush]: http://slushjs.github.io/
