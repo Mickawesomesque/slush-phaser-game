@@ -1,5 +1,6 @@
 'use strict';
 
+var fs = require('fs');
 var browserSync = require('browser-sync');
 var browserify = require('browserify');
 var gulp = require('gulp');
@@ -74,7 +75,9 @@ gulp.task('build-stylesheets', ['clean-stylesheets'], function () {
 });
 
 gulp.task('build-vendors', ['clean-vendors'], function () {
-  gulp.src('./bower_components/phaser-official/build/phaser*')
+  var bowerConfig = JSON.parse(fs.readFileSync('./.bowerrc', 'utf8'));
+
+  gulp.src('./' + bowerConfig['directory'] + '/phaser/build/phaser*')
     .pipe(ignore('*.ts'))
     .pipe(gulp.dest('./dist/js/'));
 });
