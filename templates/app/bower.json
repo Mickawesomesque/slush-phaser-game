@@ -4,6 +4,6 @@
   "private": true,
 
   "devDependencies": {
-    "phaser-official": "<%= phaser %>"
+    "phaser": "<%= phaser %>"
   }
 }
