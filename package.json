@@ -1,6 +1,6 @@
 {
   "name": "slush-phaser-game",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A slush generator for easily starting to make HTML5 games with Phaser.",
   "license": "MIT",
   "author": "Mickaël Mendel <mickael@delmen.fr>",
