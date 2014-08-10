@@ -80,11 +80,17 @@ awesome-phaser-game/
 |   ├── stylesheets
 |   |   └── style.scss
 |   └── index.jade
+├── tasks                         # Where the build tasks are. Each file in this
+|   ├── build.js                  # directory will be called by gulp.
+|   ├── clean.js
+|   ├── default.js
+|   ├── serve.js
+|   └── watch.jade
 ├── .bowerrc
 ├── .gitignore
 ├── .jshintrc
 ├── bower.json
-├── config.js                     # A config file for your project.
+├── config.js                     # A config file for your game.
 ├── gulpfile.js
 └── package.json
 ```
