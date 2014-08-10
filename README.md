@@ -85,7 +85,7 @@ awesome-phaser-game/
 |   ├── clean.js
 |   ├── default.js
 |   ├── serve.js
-|   └── watch.jade
+|   └── watch.js
 ├── .bowerrc
 ├── .gitignore
 ├── .jshintrc
