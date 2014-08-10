@@ -13,7 +13,7 @@ var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
-var cfg = require('../../config');
+var cfg = require('../config');
 
 var DEBUG = process.env.NODE_ENV === 'dev';
 
