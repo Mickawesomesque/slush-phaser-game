@@ -8,7 +8,7 @@ var gutil = require('gulp-util');
 var ignore = require('gulp-ignore');
 var imagemin = require('gulp-imagemin');
 var jade = require('gulp-jade');
-var linter = require('gulp-jshint');
+var linter = require('gulp-eslint');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var source = require('vinyl-source-stream');
@@ -84,8 +84,8 @@ gulp.task('build-vendors', ['clean-vendors'], function () {
 
 gulp.task('lint', function () {
   gulp.src('./src/scripts/**/*.js')
-    .pipe(linter())
-    .pipe(linter.reporter('jshint-stylish'));
+    .pipe(linter({globals: {'Phaser': false}}))
+    .pipe(linter.format());
 });
 
 gulp.task('uglify', ['clean-uglified'], function () {
