@@ -3,21 +3,56 @@
 var fs = require('fs');
 var browserSync = require('browser-sync');
 var browserify = require('browserify');
+var program = require('commander');
 
 var gulp = require('gulp');
+var gulpif = require('gulp-if');
 var gutil = require('gulp-util');
+var buffer = require('gulp-buffer');
+var cssmin = require('gulp-cssmin');
 var ignore = require('gulp-ignore');
 var imagemin = require('gulp-imagemin');
 var jade = require('gulp-jade');
 var linter = require('gulp-eslint');
 var rename = require('gulp-rename');
 var sass = require('gulp-sass');
+var size = require('gulp-size');
 var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
+var zip = require('gulp-zip');
 
 var cfg = require('../config');
 
-var DEBUG = process.env.NODE_ENV === 'dev';
+program.on('--help', function () {
+  console.log('  Tasks:');
+  console.log();
+  console.log('    build:all\t\tbuild the game and all assets');
+  console.log('    build:audio\t\tbuild audio assets');
+  console.log('    build:fonts\t\tbuild fonts assets');
+  console.log('    build:images\tbuild images assets');
+  console.log('    build:html\t\tconvert Jade files to HTML files');
+  console.log('    build:js\t\tbuild JS files');
+  console.log('    build:css\t\tconvert SASS files to CSS files');
+  console.log('    build:vendors\tbuild vendors files');
+  console.log();
+  console.log('    clean:all\t\tremove all generated files');
+  console.log('    clean:audio\t\tremove generated audio assets');
+  console.log('    clean:fonts\t\tremove generated fonts assets');
+  console.log('    clean:images\tremove generated images assets');
+  console.log('    clean:html\t\tremove generated HTML files');
+  console.log('    clean:js\t\tremove generated JS files');
+  console.log('    clean:css\t\tremove generated CSS files');
+  console.log('    clean:vendors\tremove generated vendors files');
+  console.log();
+  console.log('    serve\t\tlaunch local server');
+  console.log('    watch\t\twatch for file changes and rebuild automatically');
+  console.log();
+});
+
+program
+  .option('-p, --prod', 'enforce production environment')
+  .option('-c, --compress', 'produce a zip package')
+  .parse(process.argv);
 
 gulp.task('build:all', [
   'build:audio',
@@ -51,10 +86,10 @@ gulp.task('build:images', function () {
 gulp.task('build:html', function () {
   return gulp.src('./src/*jade')
     .pipe(jade({
-      pretty: DEBUG,
+      pretty: !program.prod,
       data: {
         name: cfg.name,
-        debug: DEBUG
+        debug: !program.prod
       }
     }))
     .pipe(gulp.dest('./build/'))
@@ -62,10 +97,13 @@ gulp.task('build:html', function () {
 });
 
 gulp.task('build:js', function () {
-  return browserify('./src/scripts/main.js', {debug: DEBUG})
+  return browserify('./src/scripts/main.js', {debug: !program.prod})
     .bundle()
     .on('error', onBrowserifyError)
     .pipe(source('game.js'))
+    .pipe(buffer())
+    .pipe(gulpif(program.prod, uglify()))
+    .pipe(gulpif(program.prod, rename('game.min.js')))
     .pipe(gulp.dest('./build/js/'))
     .pipe(browserSync.reload({stream: true, once: true}));
 });
@@ -73,6 +111,7 @@ gulp.task('build:js', function () {
 gulp.task('build:css', function () {
   return gulp.src('./src/stylesheets/*.scss')
     .pipe(sass())
+    .pipe(cssmin())
     .pipe(gulp.dest('./build/css/'))
     .pipe(browserSync.reload({stream: true}));
 });
@@ -85,11 +124,16 @@ gulp.task('build:vendors', function () {
     .pipe(gulp.dest('./build/js/'));
 });
 
-gulp.task('build:dist', function () {
-  return gulp.src('./dist/js/game.js')
-    .pipe(rename('game.min.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('./dist/js/'));
+gulp.task('build:dist', ['build:all'], function () {
+  if (!program.prod) {
+    gutil.log(gutil.colors.yellow('WARNING'), gutil.colors.grey('Missing flag --prod'));
+    gutil.log(gutil.colors.yellow('WARNING'), gutil.colors.grey('You should switch to prod environment'));
+  }
+
+  return gulp.src('./build/**/*')
+    .pipe(gulpif(program.compress, zip('build.zip')))
+    .pipe(size())
+    .pipe(gulp.dest('./dist/'))
 });
 
 gulp.task('lint', function () {

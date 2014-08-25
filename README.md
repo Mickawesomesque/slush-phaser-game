@@ -9,7 +9,7 @@ A [slush][slush] generator for easily starting to make HTML5 games with
 - [Browserify][browserify]
 - [Jade][jade]
 - [SASS][sass]
-- [JSHint][jshint]: keep your code clean
+- [ESLint][eslint]: keep your code clean
 - [BrowserSync][browser-sync]: a local web server to test your code
 - A project structure already established*, making it easier to get started
 
@@ -53,7 +53,7 @@ npm run dev
 Once the server is running, each modification will automatically update the page
 opened in the browser.
 
-A new folder (```dist```) should appear at the root of your project, containing
+A new folder (```build```) should appear at the root of your project, containing
 the generated files (HTML, CSS and JS) for your game. That's the content of this
 folder you'll use when publishing your game.
 
@@ -64,10 +64,11 @@ awesome-phaser-game/
 ├── assets                        # Assets folder: images are at the root...
 |   ├── audio                     # ... audio and music files are here...
 |   └── fonts                     # ... while fonts go there.
-├── dist                          # Generated folder.
+├── build                         # Generated folder.
 |   ├── assets
 |   ├── css
 |   └── js
+├── dist                          # Were you'll find the version you'll publish.
 ├── src
 |   ├── scripts
 |   |   ├── prefabs               # Put all your "prefabs" in that folder...
@@ -87,8 +88,8 @@ awesome-phaser-game/
 |   ├── serve.js
 |   └── watch.js
 ├── .bowerrc
+├── .eslintrc
 ├── .gitignore
-├── .jshintrc
 ├── bower.json
 ├── config.js                     # A config file for your game.
 ├── gulpfile.js
@@ -121,8 +122,8 @@ THE SOFTWARE.
 [browserify]: http://browserify.org/
 [codevinsky]: https://twitter.com/codevinsky
 [codevinsky-tutorial]: http://www.codevinsky.com/phaser-2-0-tutorial-flappy-bird-part-1/
+[eslint]: http://www.eslint.org/
 [jade]: http://jade-lang.com/
-[jshint]: http://www.jshint.com/
 [gulp]: http://gulpjs.com/
 [node]: http://nodejs.org/
 [phaser]: http://phaser.io

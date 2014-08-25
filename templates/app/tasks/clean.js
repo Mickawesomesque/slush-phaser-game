@@ -1,55 +1,40 @@
 'use strict';
 
 var gulp = require('gulp');
-var clean = require('gulp-rimraf');
+var del = require('del');
 
-gulp.task('clean:all', [
-  'clean:audio',
-  'clean:fonts',
-  'clean:images',
-  'clean:html',
-  'clean:js',
-  'clean:css',
-  'clean:vendors',
-  'clean:dist',
-]);
+gulp.task('clean:all', function () {
+  del('./build/', {force: true});
+});
 
 gulp.task('clean:audio', function () {
-  gulp.src('./build/assets/audio/', {read: false})
-    .pipe(clean());
+  del('./build/assets/audio/', {force: true});
 });
 
 gulp.task('clean:fonts', function () {
-  gulp.src('./build/assets/fonts/', {read: false})
-    .pipe(clean());
+  del('./build/assets/fonts/', {force: true});
 });
 
 gulp.task('clean:images', function () {
-  gulp.src(['./build/assets/*.jpg', './dist/assets/*.png'], {read: false})
-    .pipe(clean());
+  del(['./build/assets/*.jpg', './dist/assets/*.png'], {force: true});
 });
 
 gulp.task('clean:html', function () {
-  gulp.src('./dist/*.html', {read: false})
-    .pipe(clean());
+  del('./build/*.html', {force: true});
 });
 
 gulp.task('clean:js', function () {
-  gulp.src('./build/js/game.js', {read: false})
-    .pipe(clean());
+  del('./build/js/game*.js', {force: true});
 });
 
 gulp.task('clean:css', function () {
-  gulp.src('./build/css/*.css', {read: false})
-    .pipe(clean());
+  del('./build/css/*.css', {force: true});
 });
 
 gulp.task('clean:vendors', function () {
-  gulp.src('./build/js/phaser*', {read: false})
-    .pipe(clean());
+  del('./build/js/phaser*', {force: true});
 });
 
 gulp.task('clean:dist', function () {
-  gulp.src('./dist/', {read: false})
-    .pipe(clean());
+  del('./dist/', {force: true});
 });
