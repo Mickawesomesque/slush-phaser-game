@@ -75,5 +75,9 @@
     "max-depth": [1, 2],
     "max-len": [1, 80, 4],
     "no-plusplus": 1
+  },
+
+  "globals": {
+    "Phaser": false
   }
 }

@@ -94,7 +94,7 @@ gulp.task('build:dist', function () {
 
 gulp.task('lint', function () {
   gulp.src('./src/scripts/**/*.js')
-    .pipe(linter({globals: {'Phaser': false}}))
+    .pipe(linter())
     .pipe(linter.format());
 });
 
