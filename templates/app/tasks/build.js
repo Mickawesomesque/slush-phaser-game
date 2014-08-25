@@ -3,6 +3,7 @@
 var fs = require('fs');
 var browserSync = require('browser-sync');
 var browserify = require('browserify');
+
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var ignore = require('gulp-ignore');
@@ -13,38 +14,42 @@ var rename = require('gulp-rename');
 var sass = require('gulp-sass');
 var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
+
 var cfg = require('../config');
 
 var DEBUG = process.env.NODE_ENV === 'dev';
 
-gulp.task('build-all', [
-  'build-assets', 'build-markup', 'build-scripts', 'build-stylesheets',
-  'build-vendors'
+gulp.task('build:all', [
+  'build:audio',
+  'build:fonts',
+  'build:images',
+  'build:html',
+  'build:js',
+  'build:css',
+  'build:vendors'
 ]);
 
-gulp.task('build-assets', ['build-audio', 'build-fonts', 'build-images']);
-
-gulp.task('build-audio', ['clean-audio'], function () {
-  gulp.src('./assets/audio/**/*')
-    .pipe(gulp.dest('./dist/assets/audio/'))
+gulp.task('build:audio', function () {
+  return gulp.src('./assets/audio/**/*')
+    .pipe(gulp.dest('./build/assets/audio/'))
     .pipe(browserSync.reload({stream: true, once: true}));
 });
 
-gulp.task('build-fonts', ['clean-fonts'], function () {
-  gulp.src('./assets/fonts/**/*')
-    .pipe(gulp.dest('./dist/assets/fonts'))
+gulp.task('build:fonts', function () {
+  return gulp.src('./assets/fonts/**/*')
+    .pipe(gulp.dest('./build/assets/fonts'))
     .pipe(browserSync.reload({stream: true, once: true}));
 });
 
-gulp.task('build-images', ['clean-images'], function () {
-  gulp.src(['./assets/*.jpg', './assets/*.png'])
+gulp.task('build:images', function () {
+  return gulp.src(['./assets/*.jpg', './assets/*.png'])
     .pipe(imagemin())
-    .pipe(gulp.dest('./dist/assets/'))
+    .pipe(gulp.dest('./build/assets/'))
     .pipe(browserSync.reload({stream: true, once: true}));
 });
 
-gulp.task('build-markup', ['clean-markup'], function () {
-  gulp.src('./src/*jade')
+gulp.task('build:html', function () {
+  return gulp.src('./src/*jade')
     .pipe(jade({
       pretty: DEBUG,
       data: {
@@ -52,33 +57,38 @@ gulp.task('build-markup', ['clean-markup'], function () {
         debug: DEBUG
       }
     }))
-    .pipe(gulp.dest('./dist/'))
+    .pipe(gulp.dest('./build/'))
     .pipe(browserSync.reload({stream: true}));
 });
 
-gulp.task('build-scripts', ['lint', 'clean-scripts'], function () {
-  browserify('./src/scripts/main.js', {debug: DEBUG})
+gulp.task('build:js', function () {
+  return browserify('./src/scripts/main.js', {debug: DEBUG})
     .bundle()
-    .on('error', function (err) {
-      gutil.log(err.message);
-    })
+    .on('error', onBrowserifyError)
     .pipe(source('game.js'))
-    .pipe(gulp.dest('./dist/js/'))
+    .pipe(gulp.dest('./build/js/'))
     .pipe(browserSync.reload({stream: true, once: true}));
 });
 
-gulp.task('build-stylesheets', ['clean-stylesheets'], function () {
-  gulp.src('./src/stylesheets/*.scss')
+gulp.task('build:css', function () {
+  return gulp.src('./src/stylesheets/*.scss')
     .pipe(sass())
-    .pipe(gulp.dest('./dist/css/'))
+    .pipe(gulp.dest('./build/css/'))
     .pipe(browserSync.reload({stream: true}));
 });
 
-gulp.task('build-vendors', ['clean-vendors'], function () {
+gulp.task('build:vendors', function () {
   var bowerConfig = JSON.parse(fs.readFileSync('./.bowerrc', 'utf8'));
 
-  gulp.src('./' + bowerConfig['directory'] + '/phaser/build/phaser*')
+  return gulp.src('./' + bowerConfig['directory'] + '/phaser/build/phaser*')
     .pipe(ignore('*.ts'))
+    .pipe(gulp.dest('./build/js/'));
+});
+
+gulp.task('build:dist', function () {
+  return gulp.src('./dist/js/game.js')
+    .pipe(rename('game.min.js'))
+    .pipe(uglify())
     .pipe(gulp.dest('./dist/js/'));
 });
 
@@ -88,9 +98,7 @@ gulp.task('lint', function () {
     .pipe(linter.format());
 });
 
-gulp.task('uglify', ['clean-uglified'], function () {
-  gulp.src('./dist/js/game.js')
-    .pipe(rename('game.min.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('./dist/js/'));
-});
+function onBrowserifyError(err) {
+  gutil(gutil.colors.red('ERROR'), gutil.colors.grey(err.message));
+  this.emit('end');
+};
