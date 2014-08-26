@@ -18,7 +18,6 @@
     "canvas",
     "webgl"
   ],
-
   "repository": {
     "type": "git",
     "url": "https://github.com/Mickawesomesque/slush-phaser-game"
@@ -26,14 +25,13 @@
   "bugs": {
     "url": "https://github.com/Mickawesomesque/slush-phaser-game/issues"
   },
-
   "dependencies": {
-    "gulp": "latest",
-    "gulp-conflict": "latest",
-    "gulp-install": "latest",
-    "gulp-rename": "latest",
-    "gulp-template": "latest",
-    "inquirer": "latest",
-    "underscore.string": "latest"
+    "gulp": "^3.8.7",
+    "gulp-conflict": "^0.2.0",
+    "gulp-install": "^0.2.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-template": "^1.0.0",
+    "inquirer": "^0.6.0",
+    "underscore.string": "^2.3.3"
   }
 }
