@@ -8,7 +8,7 @@ A [slush][slush] generator for easily starting to make HTML5 games with
 - [Phaser][phaser]
 - [Browserify][browserify]
 - [Jade][jade]
-- [SASS][sass]
+- [Stylus][stylus]
 - [ESLint][eslint]: keep your code clean
 - [BrowserSync][browser-sync]: a local web server to test your code
 - A project structure already established*, making it easier to get started
@@ -47,7 +47,7 @@ Phaser you want to use.
 This will start the local web server and open your game in your browser:
 
 ```sh
-npm run dev
+gulp
 ```
 
 Once the server is running, each modification will automatically update the page
@@ -56,6 +56,8 @@ opened in the browser.
 A new folder (```build```) should appear at the root of your project, containing
 the generated files (HTML, CSS and JS) for your game. That's the content of this
 folder you'll use when publishing your game.
+
+To list all the available options, you can use ```gulp -h```.
 
 ## Project structure
 
@@ -79,7 +81,7 @@ awesome-phaser-game/
 |   |   |   └── preloader.js
 |   |   └── main.js               # Entry point of your code.
 |   ├── stylesheets
-|   |   └── style.scss
+|   |   └── style.styl
 |   └── index.jade
 ├── tasks                         # Where the build tasks are. Each file in this
 |   ├── build.js                  # directory will be called by gulp.
@@ -120,12 +122,12 @@ THE SOFTWARE.
 
 [browser-sync]: http://www.browsersync.io/
 [browserify]: http://browserify.org/
-[codevinsky]: https://twitter.com/codevinsky
+[codevinsky]: https://twitter.com/codevinsky/
 [codevinsky-tutorial]: http://www.codevinsky.com/phaser-2-0-tutorial-flappy-bird-part-1/
 [eslint]: http://www.eslint.org/
 [jade]: http://jade-lang.com/
 [gulp]: http://gulpjs.com/
 [node]: http://nodejs.org/
-[phaser]: http://phaser.io
-[sass]: http://sass-lang.com/
+[phaser]: http://phaser.io/
+[stylus]: http://learnboost.github.io/stylus/
 [slush]: http://slushjs.github.io/
