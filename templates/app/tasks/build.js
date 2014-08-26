@@ -32,7 +32,7 @@ program.on('--help', function () {
   console.log('    build:images\tbuild images assets');
   console.log('    build:html\t\tconvert Jade files to HTML files');
   console.log('    build:js\t\tbuild JS files');
-  console.log('    build:css\t\tconvert SASS files to CSS files');
+  console.log('    build:css\t\tconvert Stylus files to CSS files');
   console.log('    build:vendors\tbuild vendors files');
   console.log();
   console.log('    clean:all\t\tremove all generated files');

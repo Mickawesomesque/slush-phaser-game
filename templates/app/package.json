@@ -25,10 +25,5 @@
     "gulp-zip": "latest",
     "jshint-stylish": "latest",
     "vinyl-source-stream": "latest"
-  },
-
-  "scripts": {
-    "dev": "NODE_ENV=dev gulp default",
-    "package": "gulp build-all && gulp uglify"
   }
 }
