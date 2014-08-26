@@ -15,8 +15,8 @@ var imagemin = require('gulp-imagemin');
 var jade = require('gulp-jade');
 var linter = require('gulp-eslint');
 var rename = require('gulp-rename');
-var sass = require('gulp-sass');
 var size = require('gulp-size');
+var stylus = require('gulp-stylus');
 var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
 var zip = require('gulp-zip');
@@ -109,8 +109,8 @@ gulp.task('build:js', function () {
 });
 
 gulp.task('build:css', function () {
-  return gulp.src('./src/stylesheets/*.scss')
-    .pipe(sass())
+  return gulp.src('./src/stylesheets/*.styl')
+    .pipe(stylus())
     .pipe(cssmin())
     .pipe(gulp.dest('./build/css/'))
     .pipe(browserSync.reload({stream: true}));
