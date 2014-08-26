@@ -111,7 +111,8 @@ gulp.task('build:js', function () {
 gulp.task('build:css', function () {
   return gulp.src('./src/stylesheets/*.styl')
     .pipe(stylus())
-    .pipe(cssmin())
+    .pipe(buffer())
+    .pipe(gulpif(program.prod, cssmin()))
     .pipe(gulp.dest('./build/css/'))
     .pipe(browserSync.reload({stream: true}));
 });
